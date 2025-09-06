@@ -1,11 +1,134 @@
-<!DOCTYPE html><html><head>
-<script>
-</script>
-<meta charset="UTF-8" />	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />	<title>Super Rocket Buddy</title>		<!-- Standardised web app manifest -->	<link rel="manifest" href="manifest.json" />		<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />	<meta name="apple-mobile-web-app-capable" content="yes" />	<meta name="apple-mobile-web-app-status-bar-style" content="black" />	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png" />	<meta name="HandheldFriendly" content="true" />		<!-- Chrome for Android web app tags -->	<meta name="mobile-web-app-capable" content="yes" />	<link rel="shortcut icon" sizes="256x256" href="icon-256.png" />
-<!-- All margins and padding must be zero for the canvas to fill the screen. -->	<style type="text/css">		* {			padding: 0;			margin: 0;		}		html, body {			background: #000;			color: #fff;			overflow: hidden;			touch-action: none;			-ms-touch-action: none;		}		canvas {			touch-action-delay: none;			touch-action: none;			-ms-touch-action: none;		} </style>	
-</head> <body> 	<div id="fb-root"></div>		<script>	// Issue a warning if trying to preview an exported project on disk.	(function(){		// Check for running exported on file protocol		if (window.location.protocol.substr(0, 4) === "file")		{			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");		}	})();	</script>		<!-- The canvas must be inside a div called c2canvasdiv -->	<div id="c2canvasdiv">			<!-- The canvas the project will render to. If you change its ID, don't forget to change the		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->		<canvas id="c2canvas" width="800" height="480">			<!-- This text is displayed if the visitor's browser does not support HTML5.			You can change it, but it is a good idea to link to a description of a browser			and provide some links to download some popular HTML5-compatible browsers. -->			<h1>Your browser does not appear to support HTML5. Try upgrading your browser to the latest version. <a href="http://www.whatbrowser.org">What is a browser?</a>			<br/><br/><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br/>			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br/>			<a href="https://www.google.com/chrome/">Google Chrome</a><br/>			<a href="http://www.apple.com/safari/download/">Apple Safari</a></h1>		</canvas>			</div>		<!-- Pages load faster with scripts at the bottom -->		<!-- Construct 2 exported games require jQuery. -->	<script src="jquery-3.4.1.min.js"></script>
+<html><head>
+    <meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Noob Rush vs Pro Monster</title>
+	
+	<!-- Standardised web app manifest -->
+	<link rel="manifest" href="manifest.json">
+	
+	<!-- Allow fullscreen mode on iOS devices. (These are Apple specific meta tags.) -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<link rel="apple-touch-icon" sizes="256x256" href="icon-256.png">
+	<meta name="HandheldFriendly" content="true">
+	
+	<!-- Chrome for Android web app tags -->
+	<meta name="mobile-web-app-capable" content="yes">
+	<link rel="shortcut icon" sizes="256x256" href="icon-256.png">
 
-	 <!-- The runtime script. You can rename it, but don't forget to rename the reference here as well. This file will have been minified and obfuscated if you enabled "Minify script" during export. -->	<script src="c2runtime.js?5000"></script>
-<script>				// Pause and resume on page becoming visible/invisible		function onVisibilityChanged() {			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)				cr_setSuspended(true);			else				cr_setSuspended(false);		};				document.addEventListener("visibilitychange", onVisibilityChanged, false);		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);				function OnRegisterSWError(e)		{			console.warn("Failed to register service worker: ", e);		};				// Runtime calls this global method when ready to start caching (i.e. after startup).		// This registers the service worker which caches resources for offline support.		window.C2_RegisterSW = function C2_RegisterSW()		{			if (!navigator.serviceWorker)				return;		// no SW support, ignore call						try {				navigator.serviceWorker.register("sw.js", { scope: "./" })				.then(function (reg)				{					console.log("Registered service worker on " + reg.scope);				})				.catch(OnRegisterSWError);			}			catch (e)			{				OnRegisterSWError(e);			}		}; </script>
+    <!-- All margins and padding must be zero for the canvas to fill the screen. -->
+	<style type="text/css">
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		html, body {
+			background: #000;
+			color: #fff;
+			overflow: hidden;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+		canvas {
+			touch-action-delay: none;
+			touch-action: none;
+			-ms-touch-action: none;
+		}
+    </style>
+	
 
-</body> </html> 
+<script src="https://s0.2mdn.net/instream/video/client.js" async="" type="text/javascript"></script><script type="text/javascript" id="analytics" async="" src="https://gamemonetize.com/ga.js"></script><script type="text/javascript" async="" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script><script id="gamemonetize-sdk" src="https://api.gamemonetize.com/sdk.js"></script><script src="offlineClient.js"></script><style>#inspect-element-top-layer * { all: unset; }</style><script src="https://www.googletagmanager.com/gtag/js?id=G-8SK3BC00X8"></script><meta http-equiv="origin-trial" content="A9AxgGSwmnfgzzkyJHILUr3H8nJ/3D+57oAsL4DBt4USlng4jZ0weq+fZtHC/Qwwn6gd4QSa5DzT3OBif+kXVA0AAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="></head> 
+ 
+<body> 
+	<div id="fb-root"></div>
+	
+	<script type="text/javascript" src="//cdn.kiz10.com/applications/controllers/js/_apiKiz10.js?0000000000001"></script><script>
+	// Issue a warning if trying to preview an exported project on disk.
+	(function(){
+		// Check for running exported on file protocol
+		if (window.location.protocol.substr(0, 4) === "file")
+		{
+			alert("Exported games won't work until you upload them. (When running on the file:/// protocol, browsers block many features from working for security reasons.)");
+		}
+	})();
+	</script>
+	
+	<!-- The canvas must be inside a div called c2canvasdiv -->
+	<div id="c2canvasdiv" style="width: 570px; height: 600px; margin-left: 0px; margin-top: 0px;">
+	
+		<!-- The canvas the project will render to.  If you change its ID, don't forget to change the
+		ID the runtime looks for in the jQuery events above (ready() and cr_sizeCanvas()). -->
+		<canvas id="c2canvas" width="513" height="540" style="width: 570px; height: 600px;">
+			<!-- This text is displayed if the visitor's browser does not support HTML5.
+			You can change it, but it is a good idea to link to a description of a browser
+			and provide some links to download some popular HTML5-compatible browsers. -->
+			<h1>Your browser does not appear to support HTML5.  Try upgrading your browser to the latest version.  <a href="http://www.whatbrowser.org">What is a browser?</a>
+			<br><br><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx">Microsoft Internet Explorer</a><br>
+			<a href="http://www.mozilla.com/firefox/">Mozilla Firefox</a><br>
+			<a href="https://www.google.com/chrome/">Google Chrome</a><br>
+			<a href="http://www.apple.com/safari/download/">Apple Safari</a></h1>
+		</canvas>
+		
+	</div>
+	
+	<!-- Pages load faster with scripts at the bottom -->
+	
+	<!-- Construct 2 exported games require jQuery. -->
+	<script src="jquery-3.4.1.min.js"></script>
+
+
+	
+    <!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
+    This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
+	<script src="c2runtime.js"></script>
+
+    <script>
+		// Start the Construct 2 project running on window load.
+		jQuery(document).ready(function ()
+		{			
+			// Create new runtime using the c2canvas
+			cr_createRuntime("c2canvas");
+		});
+		
+		// Pause and resume on page becoming visible/invisible
+		function onVisibilityChanged() {
+			if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
+				cr_setSuspended(true);
+			else
+				cr_setSuspended(false);
+		};
+		
+		document.addEventListener("visibilitychange", onVisibilityChanged, false);
+		document.addEventListener("mozvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("webkitvisibilitychange", onVisibilityChanged, false);
+		document.addEventListener("msvisibilitychange", onVisibilityChanged, false);
+		
+		function OnRegisterSWError(e)
+		{
+			console.warn("Failed to register service worker: ", e);
+		};
+		
+		// Runtime calls this global method when ready to start caching (i.e. after startup).
+		// This registers the service worker which caches resources for offline support.
+		window.C2_RegisterSW = function C2_RegisterSW()
+		{
+			if (!navigator.serviceWorker)
+				return;		// no SW support, ignore call
+			
+			try {
+				navigator.serviceWorker.register("sw.js", { scope: "./" })
+				.then(function (reg)
+				{
+					console.log("Registered service worker on " + reg.scope);
+				})
+				.catch(OnRegisterSWError);
+			}
+			catch (e)
+			{
+				OnRegisterSWError(e);
+			}
+		};
+    </script>
+ 
+ <div id="inspect-element-top-layer" data-inspect-element="inspectElement" style="pointer-events: none; border: unset; padding: 0px;"></div><div id="imaContainer" style="position: absolute; z-index: 10000; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgb(0, 0, 0); visibility: hidden; overflow: hidden;"><video id="imaVideo"></video></div><div id="imaContainer_new" style="position: absolute; z-index: 10000; top: 0px; left: 0px; width: 100%; height: 100%; background-color: rgb(0, 0, 0); visibility: hidden; overflow: hidden;"><video2 id="imaVideo2"></video2></div><div id="sdk__advertisement" style="position: fixed; z-index: 0; top: 0px; left: 0px; width: 100%; height: 100%; transform: translateX(-9999px); background-color: rgba(0, 0, 0, 0.8); opacity: 0; transition: opacity 300ms cubic-bezier(0.55, 0, 0.1, 1) 0s;"><div id="sdk__advertisement_slot" style="position: absolute; background-color: rgb(0, 0, 0); top: 0px; left: 0px; width: 570px; height: 600px;"><div style="position: absolute; width: 570px; height: 600px;"><div style="display: none;"><video title="Advertisement" webkit-playsinline="true" playsinline="true" style="background-color: rgb(0, 0, 0); height: 100%; width: 100%; position: absolute; left: 0px; top: 0px;"></video><div style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px;"></div></div><div style="display: none;"><video title="Advertisement" webkit-playsinline="true" playsinline="true" style="background-color: rgb(0, 0, 0); height: 100%; width: 100%; position: absolute; left: 0px; top: 0px;"></video><div style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px;"></div></div><iframe src="https://imasdk.googleapis.com/js/core/bridge3.718.0_en.html#fid=goog_1886243418" allowfullscreen="" allow="" id="goog_1886243418" title="Advertisement" style="border: 0px; opacity: 1; margin: 0px; padding: 0px; position: relative; color-scheme: light;" width="570" height="600"></iframe><iframe title="Advertisement" style="visibility: hidden; width: 0px; height: 0px; position: absolute; left: 0px; top: 0px;"></iframe></div></div><div id="gmLoadingText" style="position:absolute;bottom:0;left:0;right:0;z-index:999999;"><div style="border-top: 1px solid #000;min-height: 35px;background-color: #000000;position: relative;width: 100%;"><a style="margin-top: 3px;position: absolute;right: 5px;text-decoration: none;" target="_blank" href="https://gamemonetize.com/"><span style="font-size: 13px;font-family:Helvetica,Arial,sans-serif;font-weight: 100;color: #fff;padding-right: 8px;text-decoration: none;position: relative;top: 2px;" id="loading-text-gm">Powered by</span><img style="vertical-align: top;position: relative;width: 131px;" id="gmLogo" alt="GameMonetize.com" src="https://gamemonetize.com/gamemonetize-logo.png" border="0"></a><h1 style="display:none;text-indent: -9999px;">GameMonetize.com</h1></div></div></div><iframe name="google_video_inner_static_iframe" id="google_video_inner_static_iframe" src="about:blank" style="height: 0px; width: 0px; display:none"></iframe><div id="sdk__baguette" style="z-index: 100; position: absolute; top: 0px; left: 0px;"></div></body></html>
